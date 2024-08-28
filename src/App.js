@@ -1,5 +1,7 @@
+
 import React, { useState } from 'react';
-import { Input, Button, List, Typography, message } from 'antd';
+import { Input, Button, List, Checkbox, Typography, message } from 'antd';
+import './App.css'; 
 
 const { Text } = Typography;
 
@@ -9,12 +11,19 @@ function App() {
 
   const addTask = () => {
     if (!task) {
-      message.error('Task cannot be empty');
+      message.error('Task cannot be empty, fill smth');
       return;
     }
-    setTasks([...tasks, task]);
-    setTask(''); // Clear the input after adding
-    message.success('Task added successfully');
+    setTasks([...tasks, { text: task, completed: false }]);
+    setTask('');
+    message.success('Task was added brother');
+  };
+
+  const toggleTaskCompletion = (index) => {
+    const updatedTasks = tasks.map((task, i) => 
+      i === index ? { ...task, completed: !task.completed } : task
+    );
+    setTasks(updatedTasks);
   };
 
   const removeTask = (index) => {
@@ -24,31 +33,35 @@ function App() {
   };
 
   return (
-    <div style={{ margin: '50px auto', width: '400px' }}>
-      <h1>To-Do List</h1>
+    <div className="container">
+      <h1 className="title">To-Do List</h1>
       <Input
-        placeholder="Enter a new task"
+        className="task-input"
+        placeholder="What's on your mind today "
         value={task}
         onChange={(e) => setTask(e.target.value)}
         onPressEnter={addTask}
       />
-      <Button type="primary" onClick={addTask} style={{ marginTop: '10px' }}>
+      <Button type="primary" onClick={addTask}>
         Add Task
       </Button>
 
       <List
-        style={{ marginTop: '20px' }}
+        className="task-list"
         bordered
         dataSource={tasks}
         renderItem={(item, index) => (
           <List.Item
             actions={[
+              <Checkbox checked={item.completed} onChange={() => toggleTaskCompletion(index)} />,
               <Button danger onClick={() => removeTask(index)}>
                 Remove
               </Button>,
             ]}
           >
-            <Text>{item}</Text>
+            <Text delete={item.completed} className={item.completed ? 'completed-task' : ''}>
+              {item.text}
+            </Text>
           </List.Item>
         )}
       />

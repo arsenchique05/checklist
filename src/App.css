@@ -1,58 +1,23 @@
-/* App.css */
+/* src/App.css */
 
-.todo-container {
-  max-width: 500px;
+.container {
   margin: 50px auto;
-  padding: 20px;
-  background-color: #f4f4f9;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
+  width: 400px;
 }
 
-.todo-title {
+.title {
   text-align: center;
-  font-family: 'Arial', sans-serif;
-  color: #333;
-  margin-bottom: 20px;
 }
 
-.todo-input {
-  width: calc(100% - 80px);
-  margin-right: 10px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  padding: 10px;
-  font-size: 16px;
+.task-input {
+  margin-bottom: 10px;
 }
 
-.todo-add-button {
-  background-color: #1890ff;
-  border-color: #1890ff;
-  border-radius: 4px;
-  font-weight: bold;
-  height: 40px;
-}
-
-.todo-list {
+.task-list {
   margin-top: 20px;
 }
 
-.todo-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px;
-  background-color: #fff;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.todo-item.completed {
+.completed-task {
   text-decoration: line-through;
-  color: #999;
-}
-
-.todo-item .ant-checkbox-wrapper {
-  margin-right: 20px;
+  color: #888;
 }
